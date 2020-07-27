@@ -11,8 +11,8 @@ function ListingDetailsScreen() {
     <View>
       <Image style={styles.image} source={require("../assets/jacket.jpg")} />
       <View style={styles.detailsContainer}>
-        <AppText extraStyle={styles.title}>Jacket for sale</AppText>
-        <AppText extraStyle={styles.price}>$100</AppText>
+        <AppText style={styles.title}>Jacket for sale</AppText>
+        <AppText style={styles.price}>$100</AppText>
         <View style={styles.userContainer}>
           <ListItem
             image={require("../assets/mosh.jpg")}

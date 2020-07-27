@@ -22,10 +22,8 @@ function ListItem({
           {/* Only render an image when an image is given */}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
-            <AppText extraStyle={styles.title}>{title}</AppText>
-            {subTitle && (
-              <AppText extraStyle={styles.subTitle}>{subTitle}</AppText>
-            )}
+            <AppText style={styles.title}>{title}</AppText>
+            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
           </View>
         </View>
       </TouchableHighlight>
