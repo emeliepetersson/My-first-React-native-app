@@ -13,7 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./Screen";
 import defaultStyles from "../config/styles";
-import AppText from "./AppText";
+import AppText from "./Text";
 import { RectButton } from "react-native-gesture-handler";
 import PickerItem from "./PickerItem";
 
