@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "./app/components/Screen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
+import NavigationTheme from "./app/navigation/NavigationTheme";
 
 // const Link = () => {
 //   const navigation = useNavigation();
@@ -81,7 +82,7 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={NavigationTheme}>
       <AuthNavigator />
     </NavigationContainer>
   );
