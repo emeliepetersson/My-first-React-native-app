@@ -1,9 +1,14 @@
 import React from "react";
-import { Text, StyleSheet, View, Image } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import colors from "../config/colors";
 import AppText from "./Text";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 function Card({ image, title, subTitle, onPress }) {
   return (
