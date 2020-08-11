@@ -9,41 +9,29 @@ import routes from "../navigation/routes";
 import colors from "../config/colors";
 import listingsApi from "../api/listings";
 import AppText from "../components/Text";
+import useApi from "../hooks/useApi";
 
 function ListingsScreen({ navigation }) {
-  //Declare a state variable to store the listings that we get from the server
-  const [listings, setListings] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // we pass listingsApi.getListings because that's the API we want to call
+  const getListingsApi = useApi(listingsApi.getListings);
 
   // because loadListings is an async function we cannot pass it directly into useEffect
   // the empty array [] in the last parameter meas that the useEffect will only load the first time we render the component
   useEffect(() => {
-    loadListings();
+    getListingsApi.request();
   }, []);
-
-  const loadListings = async () => {
-    setLoading(true);
-    const response = await listingsApi.getListings();
-    setLoading(false);
-
-    if (!response.ok) return setError(true);
-
-    setError(false);
-    setListings(response.data);
-  };
 
   return (
     <Screen style={styles.screen}>
-      {error && (
+      {getListingsApi.error && (
         <>
           <AppText>Couldn't retrieve the listings.</AppText>
-          <Button title="Retry" onPress={loadListings} />
+          <Button title="Retry" onPress={getListingsApi.request} />
         </>
       )}
-      <ActivityIndicator visible={true} />
-      {/* <FlatList
-        data={listings}
+      <ActivityIndicator visible={getListingsApi.loading} />
+      <FlatList
+        data={getListingsApi.data}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <Card
@@ -53,7 +41,7 @@ function ListingsScreen({ navigation }) {
             onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
           />
         )}
-      /> */}
+      />
     </Screen>
   );
 }
