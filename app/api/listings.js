@@ -4,7 +4,7 @@ const endpoint = "/listings";
 
 const getListings = () => client.get(endpoint);
 
-const addListing = (listing) => {
+const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
   data.append("title", listing.title);
   data.append("price", listing.price);
@@ -23,7 +23,12 @@ const addListing = (listing) => {
     data.append("location", JSON.stringify(listing.location));
 
   //this post method returns a promise, so we should return it from our api function as well
-  return client.post(endpoint, data);
+  //If we want to track the upload (ex how many percent is uploaded) we add a third parameter with an object
+  // including the onUploadProgress. And instead of using console.log here we pass a function to reach the progress in the UI (the listingEditScreen)
+  return client.post(endpoint, data, {
+    onUploadProgress: (progress) =>
+      onUploadProgress(progress.loaded / progress.total),
+  });
 };
 
 export default {

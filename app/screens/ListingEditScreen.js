@@ -83,8 +83,13 @@ function ListingEditScreen() {
   const location = useLocation();
 
   const handleSubmit = async (listing) => {
+    //the first argument is the listing object, the second argument is a callback function, so our API layer is
+    // going to call this function back as the upload is progressing
     // the location is not stored in the listing object, so first we spread the listing object and then we add the location
-    const result = await listingsApi.addListing({ ...listing, location });
+    const result = await listingsApi.addListing(
+      { ...listing, location },
+      (progress) => console.log(progress)
+    );
 
     if (!result.ok) return alert("Could not save the listing.");
 
