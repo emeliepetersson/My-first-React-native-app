@@ -5,13 +5,17 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import NavigationTheme from "./app/navigation/NavigationTheme";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { View } from "react-native";
+import OfflineNotice from "./app/components/OfflineNotice";
 
 export default function App() {
   NetInfo.addEventListener((netInfo) => console.log(netInfo));
 
   return (
-    <NavigationContainer theme={NavigationTheme}>
-      <AppNavigator />
-    </NavigationContainer>
+    <>
+      <OfflineNotice />
+      <NavigationContainer theme={NavigationTheme}>
+        <AppNavigator />
+      </NavigationContainer>
+    </>
   );
 }
