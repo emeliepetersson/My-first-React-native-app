@@ -10,12 +10,17 @@ import FeedNavigator from "./FeedNavigator";
 import AccountNavigator from "./AccountNavigator";
 import NewListingButton from "./NewListingButton";
 import routes from "../navigation/routes";
+import navigation from "./rootNavigation";
 
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   useEffect(() => {
     registerForPushNotifications();
+
+    Notifications.addListener((notification) => {
+      navigation.navigate("Account");
+    });
   }, []);
 
   const registerForPushNotifications = async () => {
