@@ -23,7 +23,7 @@ apiClient.get = async (url, params, axiosConfig) => {
   }
 
   const data = await cache.get(url);
-  //if the data exists we should return an object that looks lika a successfull response
+  //if the data exists we should return an object that looks like a successfull response
   // otherwise we want to return the original response object, because it contains info about why the call to the server failed.
   return data ? { ok: true, data } : response;
 };
