@@ -12,10 +12,10 @@ export default useApi = (apiFunc) => {
     const response = await apiFunc(...args);
     setLoading(false);
 
-    if (!response.ok) return setError(true);
-
-    setError(false);
+    //if the response is not ok, setError to true, otherwise to false
+    setError(!response.ok);
     setData(response.data);
+    return response;
   };
 
   // these are the function and variables our compontents need access to
